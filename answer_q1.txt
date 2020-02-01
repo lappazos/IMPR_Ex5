@@ -1,0 +1,20 @@
+Deblur - validation error is monotonically decreasing with the increasing of the residual blocks, which means
+as the complexity of the model is increasing, it's enabling better results and better 'understanding' of the blur that
+occurred, enable more possibilities to correct.
+Image wise, as the number of the residual blocks is increasing, the image get less and less blur, and restored in a
+better way.
+
+Denoising - while looking at the plot, you can see that beside of the fact that more than 1 residual block is always for
+the best, there isn't a clear correlation between the number of blocks and the validation error. The plot is inconsistent
+in-between different runs. at least when we examine up until 5 blocks.
+Image wise, for every number of residual blocks, the image did get improved, but in a un-correlated way - every image
+was fixed in a slightly different matter, without a way of defining a clear track of improvement.
+
+In my opinion, the difference lies in the type of corruption that needed to be inverse:
+the blur is a strict pattern - it was performed with convolution, and with defined function. in short, it is a PATTERN,
+with rules - convolution with blur matrix. as the model complexity increasing, the chances to restore and track this kind
+of pattern is increasing.
+On the other hand, while taking a look on the noise corruption - it has no pattern, no rules. every pixel got interrupted
+with some random value added to it - its not a matter of some undefined convulsion needed to be inverse, its random
+noise added to it. i believe we can learn that increasing the model complexity just wont help from a certain level
+in this case - you can't 'beat' the complete randomness.

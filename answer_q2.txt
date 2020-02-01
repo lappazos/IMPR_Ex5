@@ -1,0 +1,4 @@
+The corruption function will simply be gaussian pyramid - choose some level of lower resolution.
+than, while training the model, we will need to ex3.expand() the target images, so the input and output will be at the
+same size.
+than, before performing restore_image, we will need to expand the input image as well.
