@@ -162,7 +162,7 @@ def train_model(model, images, corruption_func, batch_size,
                                            (model.input_shape[1], model.input_shape[2]))
     model.compile(loss='mean_squared_error', optimizer=Adam(beta_2=0.9))
     model.fit_generator(train_data_set_generator, steps_per_epoch, num_epochs, validation_data=test_data_set_generator,
-                        validation_steps=num_valid_samples / batch_size)
+                        validation_steps=num_valid_samples / batch_size,use_multiprocessing=True)
 
 
 def restore_image(corrupted_image, base_model):
