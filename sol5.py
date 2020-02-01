@@ -179,7 +179,7 @@ def restore_image(corrupted_image, base_model):
     new_model = Model(inputs=a, outputs=b)
     return (new_model.predict(np.expand_dims(corrupted_image.reshape((height, width, 1)) - 0.5, axis=0)) + 0.5).clip(
         min=0, max=1).reshape(
-        (height, width))
+        (height, width)).astype(np.float64)
 
 
 def add_gaussian_noise(image, min_sigma, max_sigma):
